@@ -93,7 +93,7 @@ class ApiTest extends TestCase
         $this->assertEquals(400, $response->getStatusCode());
         $responseData = json_decode((string)$response->getBody(), true);
         $this->assertTrue($responseData['error']);
-        $this->assertEquals('Name cannot be empty.', $responseData['message']);
+        $this->assertEquals('Name cannot be empty.', $responseData['validationErrors']['name']);
     }
 
     public function testPostUserRouteMissingEmail()
@@ -105,7 +105,7 @@ class ApiTest extends TestCase
         $this->assertEquals(400, $response->getStatusCode());
         $responseData = json_decode((string)$response->getBody(), true);
         $this->assertTrue($responseData['error']);
-        $this->assertEquals('Email cannot be empty.', $responseData['message']);
+        $this->assertEquals('Email cannot be empty.', $responseData['validationErrors']['email']);
     }
 
     public function testPostUserRouteMissingAll()
@@ -116,7 +116,7 @@ class ApiTest extends TestCase
         $this->assertEquals(400, $response->getStatusCode());
         $responseData = json_decode((string)$response->getBody(), true);
         $this->assertTrue($responseData['error']);
-        $this->assertEquals('Name cannot be empty.', $responseData['message']);
+        $this->assertEquals('Name cannot be empty.', $responseData['validationErrors']['name']);
     }
 
     public function testPostUserRouteNameTooLong()
@@ -129,7 +129,7 @@ class ApiTest extends TestCase
         $this->assertEquals(400, $response->getStatusCode());
         $responseData = json_decode((string)$response->getBody(), true);
         $this->assertTrue($responseData['error']);
-        $this->assertEquals('Name cannot be more than 255 characters.', $responseData['message']);
+        $this->assertEquals('Name cannot be more than 255 characters.', $responseData['validationErrors']['name']);
     }
 
     public function testPostUserRouteInvalidEmailFormat()
@@ -141,7 +141,7 @@ class ApiTest extends TestCase
         $this->assertEquals(400, $response->getStatusCode());
         $responseData = json_decode((string)$response->getBody(), true);
         $this->assertTrue($responseData['error']);
-        $this->assertEquals('Invalid email address.', $responseData['message']);
+        $this->assertEquals('Invalid email address.', $responseData['validationErrors']['email']);
     }
 
     public function testPostUserRouteEmailTooLong()
@@ -154,7 +154,7 @@ class ApiTest extends TestCase
         $this->assertEquals(400, $response->getStatusCode());
         $responseData = json_decode((string)$response->getBody(), true);
         $this->assertTrue($responseData['error']);
-        $this->assertEquals('Email cannot be more than 255 characters.', $responseData['message']);
+        $this->assertEquals('Email cannot be more than 255 characters.', $responseData['validationErrors']['email']);
     }
 
     public function testPostUserRouteThrowsPDOException()
