@@ -23,7 +23,7 @@ Content-Type: application/json
 
 
 ### POST EARN GOOD
-POST http://localhost:8888/users/22/earn
+POST http://localhost:8888/users/25/earn
 Content-Type: application/json
 
 {
@@ -33,17 +33,17 @@ Content-Type: application/json
 
 
 ### POST EARN BAD USER ID
-POST http://localhost:8888/users/10/earn
+POST http://localhost:8888/users/24/earn
 Content-Type: application/json
 
 {
-  "points": 123,
+  "points": 500,
   "description": "transaction description"
 }
 
 
 ### POST EARN bad
-POST http://localhost:8888/users/2/earn
+POST http://localhost:8888/users/22/earn
 Content-Type: application/json
 
 {
@@ -53,7 +53,7 @@ Content-Type: application/json
 
 
 ### POST EARN bad
-POST http://localhost:8888/users/2/earn
+POST http://localhost:8888/users/22/earn
 Content-Type: application/json
 
 {
@@ -63,7 +63,7 @@ Content-Type: application/json
 
 
 ### POST EARN bad
-POST http://localhost:8888/users/2/earn
+POST http://localhost:8888/users/22/earn
 Content-Type: application/json
 
 {
@@ -82,28 +82,28 @@ Content-Type: application/json
 
 
 ### POST EARN bad
-POST http://localhost:8888/users/2/earn
+POST http://localhost:8888/users/26/earn
 Content-Type: application/json
 
 {}
 
 
 ### POST REDEEM GOOD
-POST http://localhost:8888/users/2/redeem
+POST http://localhost:8888/users/25/redeem
 Content-Type: application/json
 
 {
-  "points": 1000,
+  "points": 10,
   "description": "transaction description"
 }
 
 
 ### POST REDEEM BAD USER ID
-POST http://localhost:8888/users/7/redeem
+POST http://localhost:8888/users/23/redeem
 Content-Type: application/json
 
 {
-  "points": 123,
+  "points": 0,
   "description": "transaction description"
 }
 
@@ -155,7 +155,7 @@ Content-Type: application/json
 
 
 ### DELETE GOOD
-DELETE http://localhost:8888/users/1
+DELETE http://localhost:8888/users/25
 
 
 ### DELETE BAD

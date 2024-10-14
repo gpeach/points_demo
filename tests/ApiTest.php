@@ -77,7 +77,7 @@ class ApiTest extends TestCase
             ->withParsedBody(['name' => 'Jane Doe', 'email' => 'jane.doe@example.com']);
         $response = $this->app->handle($request);
 
-        $this->assertEquals(201, $response->getStatusCode()); // Assuming 201 for created
+        $this->assertEquals(201, $response->getStatusCode());
         $this->assertJson((string)$response->getBody());
 
         $responseData = json_decode((string)$response->getBody(), true);
@@ -121,7 +121,7 @@ class ApiTest extends TestCase
 
     public function testPostUserRouteNameTooLong()
     {
-        $longName = str_repeat('a', 256); // Assuming the max length is 255 characters
+        $longName = str_repeat('a', 256);
         $request = (new ServerRequestFactory)->createServerRequest('POST', '/users')
             ->withParsedBody(['name' => $longName, 'email' => 'jane.doe@example.com']);
         $response = $this->app->handle($request);
@@ -146,7 +146,7 @@ class ApiTest extends TestCase
 
     public function testPostUserRouteEmailTooLong()
     {
-        $longEmail = str_repeat('a', 247) . '@example.com'; // Generates a 256-character email
+        $longEmail = str_repeat('a', 247) . '@example.com';
         $request = (new ServerRequestFactory)->createServerRequest('POST', '/users')
             ->withParsedBody(['name' => 'Jane Doe', 'email' => $longEmail]);
         $response = $this->app->handle($request);
@@ -155,5 +155,21 @@ class ApiTest extends TestCase
         $responseData = json_decode((string)$response->getBody(), true);
         $this->assertTrue($responseData['error']);
         $this->assertEquals('Email cannot be more than 255 characters.', $responseData['message']);
+    }
+
+    public function testPostUserRouteThrowsPDOException()
+    {
+        $this->pdoStatement->method('execute')
+            ->willThrowException(new PDOException('Simulated database error'));
+
+        $request = (new ServerRequestFactory)->createServerRequest('POST', '/users')
+            ->withParsedBody(['name' => 'Jane Doe', 'email' => 'jane.doe@example.com']);
+
+        $response = $this->app->handle($request);
+
+        $this->assertEquals(500, $response->getStatusCode());
+        $responseData = json_decode((string)$response->getBody(), true);
+        $this->assertTrue($responseData['error']);
+        $this->assertEquals('Database Error: Error adding user: Simulated database error', $responseData['message']);
     }
 }

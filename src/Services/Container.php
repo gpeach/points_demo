@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Exception;
+
 class Container
 {
     /**
@@ -27,12 +29,12 @@ class Container
      *
      * @param string $name The name of the service to retrieve.
      * @return mixed The service (e.g., PDO instance).
-     * @throws \Exception If the service is not found.
+     * @throws Exception If the service is not found.
      */
     public function get(string $name)
     {
         if (!isset($this->services[$name])) {
-            throw new \Exception("Service {$name} not found.");
+            throw new Exception("Service {$name} not found.");
         }
 
         return $this->services[$name]();
