@@ -1,0 +1,166 @@
+### GET ALL
+GET http://localhost:8888/users
+
+
+### POST GOOD
+POST http://localhost:8888/users
+Content-Type: application/json
+
+{
+  "name": "new name",
+  "email": "new_cow@gmail.com"
+}
+
+
+### POST BAD
+POST http://localhost:8888/users
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": ""
+}
+
+
+### POST EARN GOOD
+POST http://localhost:8888/users/22/earn
+Content-Type: application/json
+
+{
+  "points": 999,
+  "description": "test description"
+}
+
+
+### POST EARN BAD USER ID
+POST http://localhost:8888/users/10/earn
+Content-Type: application/json
+
+{
+  "points": 123,
+  "description": "transaction description"
+}
+
+
+### POST EARN bad
+POST http://localhost:8888/users/2/earn
+Content-Type: application/json
+
+{
+  "points": "moo",
+  "description": "transaction description"
+}
+
+
+### POST EARN bad
+POST http://localhost:8888/users/2/earn
+Content-Type: application/json
+
+{
+  "points": 20,
+  "description": ""
+}
+
+
+### POST EARN bad
+POST http://localhost:8888/users/2/earn
+Content-Type: application/json
+
+{
+  "points": -1,
+  "description": "transaction description"
+}
+
+### POST EARN bad
+POST http://localhost:8888/users/2/earn
+Content-Type: application/json
+
+{
+  "points": "",
+  "description": ""
+}
+
+
+### POST EARN bad
+POST http://localhost:8888/users/2/earn
+Content-Type: application/json
+
+{}
+
+
+### POST REDEEM GOOD
+POST http://localhost:8888/users/2/redeem
+Content-Type: application/json
+
+{
+  "points": 1000,
+  "description": "transaction description"
+}
+
+
+### POST REDEEM BAD USER ID
+POST http://localhost:8888/users/7/redeem
+Content-Type: application/json
+
+{
+  "points": 123,
+  "description": "transaction description"
+}
+
+
+### POST REDEEM bad
+POST http://localhost:8888/users/2/redeem
+Content-Type: application/json
+
+{
+  "points": "moo",
+  "description": "transaction description"
+}
+
+
+### POST REDEEM bad
+POST http://localhost:8888/users/2/redeem
+Content-Type: application/json
+
+{
+  "points": 10000,
+  "description": "redeem description"
+}
+
+
+### POST REDEEM bad
+POST http://localhost:8888/users/2/redeem
+Content-Type: application/json
+
+{
+  "points": -1,
+  "description": "transaction description"
+}
+
+### POST REDEEM bad
+POST http://localhost:8888/users/2/redeem
+Content-Type: application/json
+
+{
+  "points": "",
+  "description": ""
+}
+
+
+### POST REDEEM bad
+POST http://localhost:8888/users/2/redeem
+Content-Type: application/json
+
+{}
+
+
+### DELETE GOOD
+DELETE http://localhost:8888/users/1
+
+
+### DELETE BAD
+DELETE http://localhost:8888/users/5
+
+
+### welcome endpoint
+GET http://localhost:8888
