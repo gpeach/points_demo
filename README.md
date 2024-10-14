@@ -51,3 +51,4 @@ other notes
 
     description was a requirement for earn and redeem but just validates and shows message in success response as no db field or logging
     could be other ways to show success message in response, like returning the posted user, updated user after earn or redeem
+    could use better exception handling and more tests
